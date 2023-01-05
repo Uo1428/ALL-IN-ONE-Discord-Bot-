@@ -9,7 +9,7 @@
 ### [Support Server](https://discord.gg/uoaio)
 
 # How to setup the bot?
-- Watch YouTube Video: []]e
+- Watch YouTube Video: [click here](https://www.youtube.com/watch?v=EWrveHpXFQI)
 ---
 
 ### 💘 Emotes Servers 
