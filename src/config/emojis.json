@@ -1,0 +1,69 @@
+{
+    "normal": {
+        "error": "<:uo_error:1015566303144185876>",
+        "check": "<:uo_check:1015566407729168485>",
+        "music": "<:musicnotes:1015925589770772551>",
+        "volume": "<:uo_voice_channel:1015566886303440906>",
+        "ball": "<:uo_8ball:1015566988027908097>",
+        "christmas": "<:uo_Christmas:1015567779602108438>",
+        "heart": "<:uo_heart:1015567981306187806>",
+        "paper": "<:uo_paper:1015550831199789146>",
+        "scissors": "<:uo_scissor:1015550986112217119>",
+        "stone": "<:uo_rock:1015551152663826562>",
+        "pong": "<:uo_ping_pong:1015551332414930994>",
+        "birthday": "<:uo_birthday:1015551515718586418>",
+        "clock": "<:uo_clock:1015551740281622538>",
+        "gift": "<:uo_gift:1015928197344407592>",
+        "medal": "<:uo_medal:1015551930392657931>",
+        "party": "<:uo_party:1015552073405841458> ",
+        "info": "<:uo_info:1015553303242883112>",
+        "arrowDown": "<:uo_arrow_down:1015552360690483302>",
+        "arrowUp": "<:uo_arrow_up:1015552528483622922>",
+        "dcredits": "<:uo_credit:1015861852321874002>",
+        "tv": "<:uo_tv:1015552829714341959>",
+        "slash": "<:uoBot_icon_slash:1015552999332003850>"
+    },
+
+    "Bot": {
+        "add": "<:uo_add:1015553154533838879>",
+        "info": "<:uo_info:1015553303242883112>",
+        "min": "<:uo_min:1015553484810100837>"
+    },
+
+    "economy": {
+        "pocket": "<:uo_pocket:1015560017774125056>",
+        "bank": "<:up_bank:1015562211554504744>",
+        "coins": "<:uo_dcoin:1015563002591842314>"
+    },
+
+    "music": {
+        "next": "<:uo_Next:1015563821315788840>",
+        "pause": "<:uo_Pause:1015563923753283624>",
+        "previous": "<:uo_Previous:1015564012982894632>",
+        "stop": "<:uo_Stop:1015564101751164980>",
+        "play": "<:uo_Play:1015564218415730749>"
+    },
+
+    "badges": {
+        "bot": "<:uo_BotsManeger:1015564324422553670>",
+        "management": "<:uo_Management:1015564417380929606>",
+        "bug": "<:uo_BugHunter:1015564508732858509>",
+        "developer": "<:uo_Developer:1015564621928726579>",
+        "supporter": "<:up_Supporter:1015564750580625450>",
+        "team": "<:uo_Team:1015564865110298705>",
+        "booster": "<:uo_Booster:1015564962707537950>",
+        "partner": "<:uo_Partner:1015565066495598592>",
+        "voter": "<:uo_BotVoter:1015565154836029531>",
+        "support": "<:uo_BotSupport:1015565238017470514>",
+        "moderator": "<:uo_BotModerator:1015565337195978772>",
+        "designer": "<:uo_BotDesigner:1015565431492321360>",
+        "active": "<:uo_BotActive:1015565679577010236>",
+        "event": "<:uo_BotEvent:1015565719330627584>",
+        "vip": "<:uo_BotVip:1015565917901565992>",
+        "marketing": "<:uo_BotMarketing:1015566092825018448>"
+    },
+
+    "animated": {
+        "loading": "<a:loading:807539286319693844>"
+    }
+}
