@@ -26,7 +26,7 @@
   "author": "uo1428",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/voice": "^0.14.0",
+    "@discordjs/voice": "^0.16.0",
     "@haileybot/captcha-generator": "^1.7.0",
     "@iamtraction/google-translate": "^2.0.1",
     "@napi-rs/canvas-linux-x64-gnu": "^0.1.30",
