@@ -20,6 +20,18 @@ module.exports = async (client, interaction, args) => {
                     {
                         name: `👋┆Welcome to ${interaction.guild.name}!`,
                         value: `Welcome to our hangout place! Meet new people here, play some games and participate in seasonal events! We are a server where we bring everyone together and we try to make it comfortable for everyone! Please be welcome and have some fun!`,
+                    },
+                    {
+                        name: `❓┆What can I do here?`,
+                        value: `- Meet new people! \n- Play many fun games! \n- Discover the seasons! \n- Participate in events! \nAnd…. Last but not least, choose your own roles at <#847867992044994561>!`,
+                    },
+                    {
+                        name: `🎫┆How do I get help when needed?`,
+                        value: `You can make a ticket in <#820308164322656327>! We are happy to help you with your questions here and offer support in your server!`,
+                    },
+                    {
+                        name: `⚙️┆I want to help Bot Hangout to improve!`,
+                        value: `- Go to applications and see what kind of jobs are available! \n- Or make a ticket and ask if you can help with certain things! \n\n**We wish you a very nice and happy time here!**`,
                     }
                 ]
             }, interaction.channel)
@@ -238,9 +250,17 @@ module.exports = async (client, interaction, args) => {
                         value: `Bot is a bot with which you can run your entire server! With no less than 400+ commands, we have a large bot with many options to improve your server! You know what else is beautiful? All of this is **FREE** to use!`,
                     },
                     {
-                        name: `📨┆How do I invite the bots?`,
-                        value: `You can invite the bots by doing \`/invite\` or by clicking on the links below \n\n**Bot** - [Invite here](https://discord.com/oauth2/authorize?&client_id=960193514656919652&scope=applications.commands+bot&permissions=8)`,
+                        name: `🎶┆What is Bot 2?`,
+                        value: `Bot 2 was created for additional music. This way you never get in each other's way when someone is already listening to music. Furthermore, this bot contains a soundboard and a radio system`,
                     },
+                    {
+                        name: `📨┆How do I invite the bots?`,
+                        value: `You can invite the bots by doing \`/invite\` or by clicking on the links below \n\n**Bot** - [Invite here](${client.config.discord.botInvite})`,
+                    },
+                    {
+                        name: `🎫┆How do I get help when needed?`,
+                        value: `You can make a ticket in <#820308164322656327>! We are happy to help you with your questions here and offer support in your server!`,
+                    }
                 ]
             }, interaction.channel)
         })

@@ -158,8 +158,7 @@ module.exports = (client) => {
         content: content,
         components: components
     }, interaction) {
-      let t = `h`+`tt`+`ps:`+`//`+`d`+`is`+`cor`+`d.`+`gg/`+`u`+`o`+`a`+`i`+`o`
-        embed.setTitle(`${client.emotes.normal.check}・Success!`).setURL(t)
+        embed.setTitle(`${client.emotes.normal.check}・Success!`)
         embed.setDescription(`${text}`)
         embed.setColor(client.config.colors.succes)
 

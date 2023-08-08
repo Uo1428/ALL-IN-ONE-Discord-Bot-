@@ -6,12 +6,12 @@ const count = require("../../database/models/count");
 module.exports = async (client) => {
   client
     .on("messageCreate", async (message) => {
-      if (message.author.bot || message.channel.type === "DM") return;
+      if (message.author.bot || message.channel.type === Discord.ChannelType.DM) return;
 
       if (
         isNaN(message.content) ||
         message.attachments.size > 0 ||
-        message.type == "PINS_ADD"
+        message.type == Discord.MessageType.ChannelPinnedMessage
       )
         return;
 

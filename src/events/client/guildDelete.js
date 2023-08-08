@@ -38,72 +38,63 @@ const Schema39 = require("../../database/models/wordsnake");
 const Schema40 = require("../../database/models/messageRewards");
 
 module.exports = async (client, guild) => {
-    const kickLogs = new discord.WebhookClient({
-        id: client.webhooks.serverLogs2.id,
-        token: client.webhooks.serverLogs2.token,
-    });
+  const kickLogs = new discord.WebhookClient({
+    id: client.webhooks.serverLogs2.id,
+    token: client.webhooks.serverLogs2.token,
+  });
 
-    if (guild.name == undefined) return;
+  if (guild.name == undefined) return;
 
-    const promises = [
-        client.shard.broadcastEval(client => client.guilds.cache.size),
-        client.shard.broadcastEval(client => client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)),
-    ];
-    Promise.all(promises)
-        .then(async (results) => {
-            const totalGuilds = results[0].reduce((acc, guildCount) => acc + guildCount, 0);
+  const embed = new discord.EmbedBuilder()
+    .setTitle("🔴・Removed from a server!")
+    .addFields(
+      { name: "Total servers:", value: `${client.guilds.cache.size}`, inline: true },
+      { name: "Server name", value: `${guild.name}`, inline: true },
+      { name: "Server ID", value: `${guild.id}`, inline: true },
+      { name: "Server members", value: `${guild.memberCount}`, inline: true },
+      { name: "Server owner", value: `<@!${guild.ownerId}> (${guild.ownerId})`, inline: true },
+    )
+    .setThumbnail("https://cdn.discordapp.com/attachments/843487478881976381/852419424895631370/BotSadEmote.png")
+    .setColor(client.config.colors.normal)
+  kickLogs.send({
+    username: 'Bot Logs',
+    avatarURL: client.user.avatarURL(),
+    embeds: [embed],
+  });
 
-            const embed = new discord.EmbedBuilder()
-                .setTitle("🔴・Removed from a server!")
-                .addFields(
-                    { name: "Total servers:", value: `${totalGuilds}`, inline: true },
-                    { name: "Server name", value: `${guild.name}`, inline: true },
-                    { name: "Server ID", value: `${guild.id}`, inline: true },
-                    { name: "Server members", value: `${guild.memberCount}`, inline: true },
-                    { name: "Server owner", value: `<@!${guild.ownerId}> (${guild.ownerId})`, inline: true },
-                )
-                .setThumbnail("https://cdn.discordapp.com/attachments/843487478881976381/852419424895631370/BotSadEmote.png")
-                .setColor(client.config.colors.normal)
-            kickLogs.send({
-                username: 'Bot Logs',
-                avatarURL: client.user.avatarURL(),
-                embeds: [embed],
-            });
-        })
-
-            var remove = await Schema.deleteMany({ Guild: guild.id });
-            var remove = await Schema3.deleteMany({ Guild: guild.id });
-            var remove = await Schema4.deleteMany({ Guild: guild.id });
-            var remove = await Schema5.deleteMany({ Guild: guild.id });
-            var remove = await Schema6.deleteMany({ Guild: guild.id });
-            var remove = await Schema7.deleteMany({ Guild: guild.id });
-            var remove = await Schema8.deleteMany({ Guild: guild.id });
-            var remove = await Schema9.deleteMany({ Guild: guild.id });
-            var remove = await Schema10.deleteMany({ Guild: guild.id });
-            var remove = await Schema11.deleteMany({ Guild: guild.id });
-            var remove = await Schema12.deleteMany({ Guild: guild.id });
-            var remove = await Schema13.deleteMany({ Guild: guild.id });
-            var remove = await Schema14.deleteMany({ Guild: guild.id });
-            var remove = await Schema15.deleteMany({ Guild: guild.id });
-            var remove = await Schema16.deleteMany({ Guild: guild.id });
-            var remove = await Schema17.deleteMany({ Guild: guild.id });
-            var remove = await Schema18.deleteMany({ Guild: guild.id });
-            var remove = await Schema19.deleteMany({ Guild: guild.id });
-            var remove = await Schema20.deleteMany({ Guild: guild.id });
-            var remove = await Schema21.deleteMany({ Guild: guild.id });
-            var remove = await Schema23.deleteMany({ Guild: guild.id });
-            var remove = await Schema25.deleteMany({ Guild: guild.id });
-            var remove = await Schema27.deleteMany({ Guild: guild.id });
-            var remove = await Schema28.deleteMany({ Guild: guild.id });
-            var remove = await Schema29.deleteMany({ Guild: guild.id });
-            var remove = await Schema30.deleteMany({ Guild: guild.id });
-            var remove = await Schema31.deleteMany({ Guild: guild.id });
-            var remove = await Schema32.deleteMany({ Guild: guild.id });
-            var remove = await Schema34.deleteMany({ Guild: guild.id });
-            var remove = await Schema35.deleteMany({ Guild: guild.id });
-            var remove = await Schema36.deleteMany({ Guild: guild.id });
-            var remove = await Schema37.deleteMany({ Guild: guild.id });
-            var remove = await Schema38.deleteMany({ Guild: guild.id });
-            var remove = await Schema39.deleteMany({ Guild: guild.id });
-            var remove = await Schema40.deleteMany({ Guild: guild.id });
+  var remove = await Schema.deleteMany({ Guild: guild.id });
+  var remove = await Schema3.deleteMany({ Guild: guild.id });
+  var remove = await Schema4.deleteMany({ Guild: guild.id });
+  var remove = await Schema5.deleteMany({ Guild: guild.id });
+  var remove = await Schema6.deleteMany({ Guild: guild.id });
+  var remove = await Schema7.deleteMany({ Guild: guild.id });
+  var remove = await Schema8.deleteMany({ Guild: guild.id });
+  var remove = await Schema9.deleteMany({ Guild: guild.id });
+  var remove = await Schema10.deleteMany({ Guild: guild.id });
+  var remove = await Schema11.deleteMany({ Guild: guild.id });
+  var remove = await Schema12.deleteMany({ Guild: guild.id });
+  var remove = await Schema13.deleteMany({ Guild: guild.id });
+  var remove = await Schema14.deleteMany({ Guild: guild.id });
+  var remove = await Schema15.deleteMany({ Guild: guild.id });
+  var remove = await Schema16.deleteMany({ Guild: guild.id });
+  var remove = await Schema17.deleteMany({ Guild: guild.id });
+  var remove = await Schema18.deleteMany({ Guild: guild.id });
+  var remove = await Schema19.deleteMany({ Guild: guild.id });
+  var remove = await Schema20.deleteMany({ Guild: guild.id });
+  var remove = await Schema21.deleteMany({ Guild: guild.id });
+  var remove = await Schema23.deleteMany({ Guild: guild.id });
+  var remove = await Schema25.deleteMany({ Guild: guild.id });
+  var remove = await Schema27.deleteMany({ Guild: guild.id });
+  var remove = await Schema28.deleteMany({ Guild: guild.id });
+  var remove = await Schema29.deleteMany({ Guild: guild.id });
+  var remove = await Schema30.deleteMany({ Guild: guild.id });
+  var remove = await Schema31.deleteMany({ Guild: guild.id });
+  var remove = await Schema32.deleteMany({ Guild: guild.id });
+  var remove = await Schema34.deleteMany({ Guild: guild.id });
+  var remove = await Schema35.deleteMany({ Guild: guild.id });
+  var remove = await Schema36.deleteMany({ Guild: guild.id });
+  var remove = await Schema37.deleteMany({ Guild: guild.id });
+  var remove = await Schema38.deleteMany({ Guild: guild.id });
+  var remove = await Schema39.deleteMany({ Guild: guild.id });
+  var remove = await Schema40.deleteMany({ Guild: guild.id });
 };

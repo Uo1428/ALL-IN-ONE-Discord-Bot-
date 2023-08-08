@@ -32,7 +32,7 @@ module.exports = (client, err, command, interaction) => {
         .addComponents(
             new Discord.ButtonBuilder()
                 .setLabel("Support server")
-                .setURL("https://"+"discord"+".gg/uoaio")
+                .setURL(client.config.discord.serverInvite)
                 .setStyle(Discord.ButtonStyle.Link),
         );
 

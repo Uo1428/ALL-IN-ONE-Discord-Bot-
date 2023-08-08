@@ -13,6 +13,12 @@ const Commands = require("../../database/models/customCommand");
 const CommandsSchema = require("../../database/models/customCommandAdvanced");
 const fetch = require("node-fetch");
 
+/**
+ * 
+ * @param {Discord.Client} client 
+ * @param {Discord.Message} message 
+ * @returns 
+ */
 module.exports = async (client, message) => {
   const dmlog = new Discord.WebhookClient({
     id: client.webhooks.dmLogs.id,
@@ -21,7 +27,7 @@ module.exports = async (client, message) => {
 
   if (message.author.bot) return;
 
-  if (message.channel.type === "DM") {
+  if (message.channel.type === Discord.ChannelType.DM) {
     let embedLogs = new Discord.EmbedBuilder()
       .setTitle(`💬・New DM message!`)
       .setDescription(`Bot has received a new DM message!`)
@@ -221,35 +227,63 @@ module.exports = async (client, message) => {
   chatBotSchema.findOne({ Guild: message.guild.id }, async (err, data) => {
     if (!data) return;
     if (message.channel.id !== data.Channel) return;
-    try {
-      const input = message;
-      try {
-        fetch(
-          `https://api.coreware.nl/fun/chat?msg=${encodeURIComponent(input)}`
-        )
-          .catch(() => { console.log })
-          .then((res) => res.json())
-          .catch(() => { console.log })
-          .then(async (json) => {
-            // console.log(json);
-            if (json) {
-              if (
-                json.response !== " " ||
-                json.response !== undefined ||
-                json.response !== "" ||
-                json.response !== null
-              ) {
-                try {
-                  return message
-                    .reply({ content: `${json.response}` })
-                    .catch(() => { });
-                } catch { }
-              }
-            }
+    if (process.env.OPENAI) {
+      fetch(
+        `https://api.openai.com/v1/chat/completions`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + process.env.OPENAI,
+          },
+          body: JSON.stringify({
+            'model': 'gpt-3.5-turbo',
+            'messages': [{
+              'role': 'user',
+              'content': message.content
+            }]
           })
-          .catch(() => { });
+        }
+      )
+        .catch(() => {
+        })
+        .then((res) => {
+          res.json().then((data) => {
+            if(data.error) return;
+            message.reply({ content: data.choices[0].message.content });
+          });
+        });
+    } else {
+      try {
+        const input = message;
+        try {
+          fetch(
+            `https://api.coreware.nl/fun/chat?msg=${encodeURIComponent(input)}&uid=${message.author.id}`,
+          )
+            .catch(() => { console.log })
+            .then((res) => res.json())
+            .catch(() => { console.log})
+            .then(async (json) => {
+              console.log(json);
+              if (json) {
+                if (
+                  json.response !== " " ||
+                  json.response !== undefined ||
+                  json.response !== "" ||
+                  json.response !== null
+                ) {
+                  try {
+                    return message
+                      .reply({ content: json.response })
+                      .catch(() => { });
+                  } catch { }
+                }
+              }
+            })
+            .catch(() => { });
+        } catch { }
       } catch { }
-    } catch { }
+    }
   });
 
   // Sticky messages
@@ -395,38 +429,6 @@ module.exports = async (client, message) => {
         );
       });
     }
-  }
-
-  if (command) {
-    let row = new Discord.ActionRowBuilder().addComponents(
-      new Discord.ButtonBuilder()
-        .setLabel("Invite")
-        .setURL(
-          client.config.discord.botInvite
-        )
-        .setStyle(Discord.ButtonStyle.Link),
-
-      new Discord.ButtonBuilder()
-        .setLabel("Support server")
-        .setURL(client.config.discord.serverInvite)
-        .setStyle(Discord.ButtonStyle.Link)
-    );
-
-    client.embed(
-      {
-        title: "👋・Hi, i'm Bot",
-        desc: `Bot is now completely in ${client.emotes.normal.slash} commands. The current message commands have expired! Try our new improved commands and make your server better with Bot!`,
-        fields: [
-          {
-            name: "❓┇I don't see any slash commands",
-            value:
-              "The bot may not have permissions for this. Open the invite link again and select your server. The bot then gets the correct permissions",
-          },
-        ],
-        components: [row],
-      },
-      message.channel
-    );
   }
 };
 

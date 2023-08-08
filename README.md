@@ -1,15 +1,17 @@
-# Discord-Bot
-## 🤖 Discord bot with over 400 commands.
+<div align="center">
+  <h1>Discord-Bot</h1
+  <p>A discord bot with alot of features.....<p>
+</div>
 
-![image](https://images-ext-2.discordapp.net/external/g3g819pEvW-xa-WU2rqgFRFkhuPflF4_mxoK63VPZ0A/https/storage.googleapis.com/replit/images/1671693930209_5b7ac25cf82388ebc5dc9793fa0bbc97.png)
+![image](https://img.youtube.com/vi/yuyZPfslrsw/maxresdefault.jpg)
 
 
 # [ALL IN ONΞ™](https://tinyurl.com/3jvb65tv)
-## [YouTube](https://tinyurl.com/3jvb65tv )
+## [YouTube](https://tinyurl.com/3jvb65tv)
 ### [Support Server](https://discord.gg/uoaio)
 
 # How to setup the bot?
-- Watch YouTube Video: [click here](https://www.youtube.com/watch?v=EWrveHpXFQI)
+- Watch YouTube Video: [click here](https://www.youtube.com/watch?v=yuyZPfslrsw)
 ---
 
 ### 💘 Emotes Servers 
@@ -21,8 +23,8 @@
 * 3.1.0: https://discord.gg/M7DWTrYEWZ
 
 ### 💕Credit
-- Code By Corwin#0001
-- Modified By Uo#1428
+- Code By Techpoint Development 
+- Modified By @uoaio - .gg/uoaio
 
 ## ✨ Discord Profile
 <div align="center">

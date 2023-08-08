@@ -17,8 +17,12 @@ module.exports = {
      */
 
     run: async (client, interaction, args) => {
-        const member = interaction.guild.members.cache.get(interaction.targetId);
-
+        await interaction.deferReply({ ephemeral: false });
+        const member = await interaction.guild.members.fetch(interaction.options.getUser('user').id);
+        if (!member) return client.errNormal({
+            error: "This user is not in this guild!",
+            type: 'editreply'
+        }, interaction);
         const badgeFlags = {
             DEVELOPER: client.emotes.badges.developer,
             BUGS: client.emotes.badges.bug,
@@ -35,59 +39,38 @@ module.exports = {
             MARKETING: client.emotes.badges.marketing
         }
 
- const flags = {
-  DISCORD_EMPLOYEE: "<:discordEmployee:992385182273372210>",
-  DISCORD_PARTNER: "<a:discord_Discord_Partner_disc:992385380865294386>",
-  BUGHUNTER_LEVEL_1: "<:bughunter_level_1:992385588328144927> ",
-  BUGHUNTER_LEVEL_2: "<:bughunter_level_2:992385753596305468>",
-  HYPESQUAD_EVENTS: "<:hypesquad_events:992385931703222303>",
-  HOUSE_BRAVERY: "<:house_bravery:992387170943909980>",
-  HOUSE_BRILLIANCE: "<:house_brilliance:992387318012985374>",
-  HOUSE_BALANCE: "<:HOUSE_BALANCE:992439438988812408> ",
-  EARLY_SUPPORTER: "<:early_supporter:992387546246029422>",
-  SYSTEM: "<a:verified_developer:992387826572333056>",
-  VERIFIED_BOT: "Verified Bot <:verified_bot:992387663875297360>",
-  VERIFIED_DEVELOPER: "<a:verified_developer:992387826572333056>",
-  NITRO: "<:Nitro:1006219187825426444>",
-  BOOSTER_1: "<a:ex_booster:1006210639158579371>",
-  BOOSTER_2: "<a:ex_booster:1006210639158579371>",
-  BOOSTER_3: "<a:ex_booster:1006210639158579371>",
-  BOOSTER_4: "<a:ex_booster:1006210639158579371>",
-  BOOSTER_5: "<a:ex_booster:1006210639158579371>",
-  BOOSTER_6: "<a:ex_booster:1006210639158579371>",
-  BOOSTER_7: "<a:ex_booster:1006210639158579371>",
-  BOOSTER_8: "<a:ex_booster:1006210639158579371>",
-  BOOSTER_9: "<a:ex_booster:1006210639158579371>",
-};
+        const flags = {
+            ActiveDeveloper: "👨‍💻・Active Developer",
+            BugHunterLevel1: "🐛・Discord Bug Hunter",
+            BugHunterLevel2: "🐛・Discord Bug Hunter",
+            CertifiedModerator: "👮‍♂️・Certified Moderator",
+            HypeSquadOnlineHouse1: "🏠・House Bravery Member",
+            HypeSquadOnlineHouse2: "🏠・House Brilliance Member",
+            HypeSquadOnlineHouse3: "🏠・House Balance Member",
+            HypeSquadEvents: "🏠・HypeSquad Events",
+            PremiumEarlySupporter: "👑・Early Supporter",
+            Partner: "👑・Partner",
+            Quarantined: "🔒・Quarantined", // Not sure if this is still a thing
+            Spammer: "🔒・Spammer", // Not sure if this one works
+            Staff: "👨‍💼・Discord Staff",
+            TeamPseudoUser: "👨‍💼・Discord Team",
+            VerifiedBot: "🤖・Verified Bot",
+            VerifiedDeveloper: "👨‍💻・(early)Verified Bot Developer",
+        }
+
         let Badges = await model.findOne({ User: member.user.id });
         if (!Badges) Badges = { User: member.user.id }
-        const roles = member.roles.cache ? member.roles.cache
+        const roles = member.roles.cache
             .sort((a, b) => b.position - a.position)
             .map(role => role.toString())
-            .slice(0, -1).join(", ") : "None"
+            .slice(0, -1);
         const userFlags = member.user.flags ? member.user.flags.toArray() : [];
-
-        // const userBanner = await axios.get(`https://discord.com/api/users/${member.id}`, {
-        //     headers: {
-        //         Authorization: `Bot ${client.token}`,
-        //     },
-        // })
-
-        var nickName = member.nickname;
-
-        // const { banner } = userBanner.data;
-        let url = `https://api.daimon-bot.ga/imagegen/welcomecardv2?avatar=${member.displayAvatarURL({ dynamic: true })}&discriminator=${member.user.discriminator}&user=${member.user.username}`;
-
-        // if (banner) {
-        //     const extension = banner.startsWith("a_") ? ".gif" : ".png";
-        //     url = `https://cdn.discordapp.com/banners/${member.id}/${banner}${extension}?size=1024`;
-        // }
 
         return client.embed({
             title: `👤・User information`,
             desc: `Information about ${member.user.username}`,
             thumbnail: member.user.displayAvatarURL({ dynamic: true, size: 1024 }),
-            image: url,
+            image: member.user.bannerURL({ dynamic: true, size: 1024 }),
             fields: [
                 {
                     name: "Username",
@@ -101,11 +84,11 @@ module.exports = {
                 },
                 {
                     name: "Nickname",
-                    value: `${nickName || 'No nickname'}`,
+                    value: `${member.nickname || 'No nickname'}`,
                     inline: true,
                 },
                 {
-                    name: "id",
+                    name: "Id",
                     value: `${member.user.id}`,
                     inline: true,
                 },
@@ -130,8 +113,8 @@ module.exports = {
                     inline: true,
                 },
                 {
-                    name: `Roles`,
-                    value: roles || `\u200b`,
+                    name: `Roles [${roles.length}]`,
+                    value: `${roles.length ? roles.join(', ') : 'None'}`,
                     inline: false,
                 }
             ],

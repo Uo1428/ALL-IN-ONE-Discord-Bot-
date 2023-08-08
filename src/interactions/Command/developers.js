@@ -83,16 +83,16 @@ module.exports = {
      */
 
     run: async (client, interaction, args) => {
-        model.findOne({ User: interaction.user.id }, async (err, data) => {
+    
             if (interaction.user.id === process.env.OWNER_ID) {
+                await interaction.deferReply({ fetchReply: true });
                 client.loadSubcommands(client, interaction, args);
             } else {
                 return client.errNormal({
                     error: 'Only Bot developers are allowed to do this',
-                    type: 'editreply'
+                    type: 'ephemeral'
                 }, interaction)
             }
-        })
     },
 };
 

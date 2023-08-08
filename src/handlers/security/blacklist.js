@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 
 const BlackList = require("../../database/models/blacklist");
-const { blacklistedWords } = require("../../Collection");
 
 module.exports = async (client) => {
     client.on(Discord.Events.MessageCreate, async (message) => {
@@ -18,7 +17,7 @@ module.exports = async (client) => {
                 await Promise.all(
                     splittedMsg.map((content) => {
                         try {
-                            if (blacklistedWords.get(message.guild.id).includes(content.toLowerCase())) deleting = true;
+                            if (data.Words.includes(content.toLowerCase())) deleting = true;
                         }
                         catch { }
                     })
@@ -32,10 +31,7 @@ module.exports = async (client) => {
     }).setMaxListeners(0);
 
     client.on(Discord.Events.MessageUpdate, async (oldMessage, newMessage) => {
-        if (oldMessage.content === newMessage.content) {
-            return;
-        }
-
+        if (oldMessage.content === newMessage.content || newMessage.channel.type === Discord.ChannelType.DM) return;
         try {
             BlackList.findOne({ Guild: oldMessage.guild.id }, async (err, data) => {
             if (data) {
@@ -47,7 +43,7 @@ module.exports = async (client) => {
                 await Promise.all(
                     splittedMsg.map((content) => {
                         try {
-                            if (blacklistedWords.get(newMessage.guild.id).includes(content.toLowerCase())) deleting = true;
+                            if (data.Words.includes(content.toLowerCase())) deleting = true;
                         }
                         catch { }
                     })

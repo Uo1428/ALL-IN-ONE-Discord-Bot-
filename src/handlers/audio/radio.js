@@ -10,6 +10,7 @@ const player = Voice.createAudioPlayer({
 });
 
 module.exports = (client) => {
+  let radio = "https://icecast-qmusicnl-cdp.triple-it.nl/Qmusic_nl_live.mp3"
 
     client.startStream = async function (url) {
         const resource = Voice.createAudioResource(url, {
@@ -30,7 +31,7 @@ module.exports = (client) => {
 
         setTimeout(() => {
             if (channel.type ==  Discord.ChannelType.GuildStageVoice) {
-                channel.guild.me.voice.setSuppressed(false).catch(() => { });
+                channel.guild.members.me.voice.setSuppressed(false);
             }
         }, 500)
 
@@ -64,17 +65,17 @@ module.exports = (client) => {
 
     player.on('stateChange', (oldState, newState) => {
         if (newState.status === Voice.AudioPlayerStatus.Idle) {
-            client.startStream(process.env.RADIO || "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538")
+            client.startStream(process.env.RADIO ?? radio)
         }
     });
 
     player.on('error', error => {
         client.emit("voiceError", error);
-        client.startStream(process.env.RADIO || "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538");
+        client.startStream(process.env.RADIO ?? radio)
     });
 
     client.on(Discord.Events.ClientReady, async () => {
-        client.startStream(process.env.RADIO || "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538");
+       client.startStream(process.env.RADIO ??  radio)
         
         Schema.find(async (err, data) => {
             if (data) {

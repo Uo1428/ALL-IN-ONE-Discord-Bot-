@@ -26,7 +26,7 @@ module.exports = (client) => {
         }
 
         async refreshStorage() {
-            return client.shard.broadcastEval(() => this.giveawaysManager.getAllGiveaways());
+            return this.giveawaysManager.getAllGiveaways();
         }
     };
 
