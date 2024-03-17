@@ -8,7 +8,7 @@
 
 # [ALL IN ONΞ™](https://tinyurl.com/3jvb65tv)
 ## [YouTube](https://tinyurl.com/3jvb65tv)
-### [Support Server](https://discord.gg/uoaio)
+### [Support Server](https://discord.uoaio.xyz)
 
 # How to setup the bot?
 - Watch YouTube Video: [click here](https://www.youtube.com/watch?v=yuyZPfslrsw)
@@ -28,7 +28,7 @@
 
 ## ✨ Discord Profile
 <div align="center">
-  <a width="100%" href="https://discord.gg/uoaio"  target="_blank">
+  <a width="100%" href="https://discord.uoaio.xyz/"  target="_blank">
     <img align="mid" height="100%" width="100%" style="margin: 0 10px 0 0;" alt=" " src="https://discord.c99.nl/widget/theme-2/922120042651451423.png">
   </a>
 </div>
