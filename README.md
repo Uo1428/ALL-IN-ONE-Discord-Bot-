@@ -6,7 +6,7 @@
 ![image](https://img.youtube.com/vi/yuyZPfslrsw/maxresdefault.jpg)
 
 
-# [ALL IN ONΞ™](https://tinyurl.com/3jvb65tv)
+# [ALL IN ONΞ™](https://discord.uoaio.xyz)
 ## [YouTube](https://tinyurl.com/3jvb65tv)
 ### [Support Server](https://discord.uoaio.xyz)
 
