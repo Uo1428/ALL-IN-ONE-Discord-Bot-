@@ -11,10 +11,6 @@ const Schema = require("../../database/models/functions");
 module.exports = (client) => {
     client.templateEmbed = function () {
         return new Discord.EmbedBuilder()
-            .setAuthor({
-                name: client.user.username,
-                iconURL: client.user.avatarURL({ size: 1024 })
-            })
             .setColor(client.config.colors.normal)
             .setFooter({
                 text: client.config.discord.footer,
@@ -35,10 +31,8 @@ module.exports = (client) => {
         content: content,
         components: components
     }, interaction) {
-        embed.setTitle(`${client.emotes.normal.error}・Error!`)
-        embed.setDescription(`Something went wrong!`)
         embed.addFields( 
-            { name: "💬┆Error comment", value: `\`\`\`${error}\`\`\``},
+            { name: "💬┆Error", value: `\`\`\`${error}\`\`\``},
         )
         embed.setColor(client.config.colors.error)
 
@@ -130,11 +124,7 @@ module.exports = (client) => {
         content: content,
         components: components
     }, interaction) {
-        embed.setTitle(`${client.emotes.normal.error}・Error!`)
-        embed.setDescription(`You've already done this once`)
-        embed.addFields(
-            { name: "⏰┆Try again on", value: `<t:${time}:f>`},
-        )
+        embed.setDescription(`Try again on <t:${time}:f>`)
         embed.setColor(client.config.colors.error)
 
         return client.sendEmbed({
@@ -158,7 +148,6 @@ module.exports = (client) => {
         content: content,
         components: components
     }, interaction) {
-        embed.setTitle(`${client.emotes.normal.check}・Success!`)
         embed.setDescription(`${text}`)
         embed.setColor(client.config.colors.succes)
 

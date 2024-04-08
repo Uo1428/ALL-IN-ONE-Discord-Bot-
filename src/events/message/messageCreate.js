@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-
 const Functions = require("../../database/models/functions");
 const afk = require("../../database/models/afk");
 const chatBotSchema = require("../../database/models/chatbot-channel");
@@ -12,7 +11,13 @@ const levelLogs = require("../../database/models/levelChannels");
 const Commands = require("../../database/models/customCommand");
 const CommandsSchema = require("../../database/models/customCommandAdvanced");
 const fetch = require("node-fetch");
+const db = require("pro.db");
 
+const groq = require("groq-sdk");
+const { ai_prompt } = require("../../config/bot");
+const Groq = new groq.Groq({
+  apiKey: process.env.GROQ
+})
 /**
  * 
  * @param {Discord.Client} client 
@@ -227,32 +232,47 @@ module.exports = async (client, message) => {
   chatBotSchema.findOne({ Guild: message.guild.id }, async (err, data) => {
     if (!data) return;
     if (message.channel.id !== data.Channel) return;
-    if (process.env.OPENAI) {
-      fetch(
-        `https://api.openai.com/v1/chat/completions`,
+    if (process.env.GROQ) {
+      Groq.apiKey = process.env.GROQ;
+      const key = `chat:${message.guild.id}:${message.author.id}`
+      const userChat = db.get(key) || [];
+      const messages = [
+        ...userChat,
         {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + process.env.OPENAI,
-          },
-          body: JSON.stringify({
-            'model': 'gpt-3.5-turbo',
-            'messages': [{
-              'role': 'user',
-              'content': message.content
-            }]
-          })
+          role: "user",
+          content: message.cleanContent
         }
-      )
-        .catch(() => {
-        })
-        .then((res) => {
-          res.json().then((data) => {
-            if(data.error) return;
-            message.reply({ content: data.choices[0].message.content });
-          });
-        });
+      ];
+
+      const response = await Groq.chat.completions.create({
+        messages: [{
+          role: "system",
+          content: ai_prompt ?? "you are a helpful assistant."
+        }, ...messages],
+        model: "mixtral-8x7b-32768",
+        temperature: 0.7,
+        max_tokens: 1024,
+      });
+
+      let res = response.choices?.[0]?.message?.content
+
+      // slicing res 
+      if(res.length > 1950) res = res.slice(0, 1950) + "... i was unable to send the full response, type \`continue\`"
+
+      await message.reply({
+        content: res ?? "No response."
+      })
+
+
+      messages.push({
+        role: "assistant",
+        content: res ?? "No response."
+      })
+
+
+
+      db.set(key, messages.slice(-20));
+
     } else {
       try {
         const input = message;
@@ -262,7 +282,7 @@ module.exports = async (client, message) => {
           )
             .catch(() => { console.log })
             .then((res) => res.json())
-            .catch(() => { console.log})
+            .catch(() => { console.log })
             .then(async (json) => {
               console.log(json);
               if (json) {

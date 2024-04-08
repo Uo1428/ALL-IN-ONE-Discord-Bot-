@@ -105,4 +105,5 @@ dist
 
 src/config/*
 
-package-lock.json
+# mainly for package-lock.json and pnpm-lock.yml 
+*-lock.* 

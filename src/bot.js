@@ -50,61 +50,39 @@ const client = new Discord.Client({
 });
 
 
+const plugins = [
+    new AppleMusic(),
+    new Deezer(),
+    new Facebook(),
+]
 const clientID = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-if (clientID && clientSecret) {
-    // Lavalink client
-    client.player = new Manager({
-        plugins: [
-            new AppleMusic(),
-            new Deezer(),
-            new Facebook(),
-            new Spotify({
-                clientID,
-                clientSecret,
-            })
-        ],
-        nodes: [
-            {
-                host: process.env.LAVALINK_HOST || "lava.link",
-                port: parseInt(process.env.LAVALINK_PORT) || 80,
-                password: process.env.LAVALINK_PASSWORD || "CorwinDev",
-                secure: Boolean(process.env.LAVALINK_SECURE) || false
-            },
-            {
-                host: "lavalink.techpoint.world",
-                port: 80,
-                password: "techpoint"
-            },
-        ],
-        send(id, payload) {
-            const guild = client.guilds.cache.get(id);
-            if (guild) guild.shard.send(payload);
-        },
-    })
 
-} else {
-    // Lavalink client
-    client.player = new Manager({
-        plugins: [
-            new AppleMusic(),
-            new Deezer(),
-            new Facebook(),
-        ],
-        nodes: [
-            {
-                host: process.env.LAVALINK_HOST || "lava.link",
-                port: parseInt(process.env.LAVALINK_PORT) || 80,
-                password: process.env.LAVALINK_PASSWORD || "CorwinDev",
-                secure: Boolean(process.env.LAVALINK_SECURE) || false
-            },
-        ],
-        send(id, payload) {
-            const guild = client.guilds.cache.get(id);
-            if (guild) guild.shard.send(payload);
-        }
+if (clientID && clientSecret) plugins.push(
+    new Spotify({
+        clientID,
+        clientSecret,
     })
-}
+)
+
+// Lavalink client
+client.player = new Manager({
+    plugins,
+    nodes: [
+        {
+            host: process.env.LAVALINK_HOST || "lava.link",
+            port: parseInt(process.env.LAVALINK_PORT) || 80,
+            password: process.env.LAVALINK_PASSWORD || "CorwinDev",
+            secure: Boolean(process.env.LAVALINK_SECURE) || false
+        },
+    ],
+    send(id, payload) {
+        const guild = client.guilds.cache.get(id);
+        if (guild) guild.shard.send(payload);
+    }
+})
+
+
 const events = fs.readdirSync(`./src/events/music`).filter(files => files.endsWith('.js'));
 
 for (const file of events) {
@@ -113,7 +91,7 @@ for (const file of events) {
 };
 
 // Connect to database
-require("./database/connect")();
+;(async () => await require("./database/connect")())();
 
 // Client settings
 client.config = require('./config/bot');
@@ -158,7 +136,7 @@ process.on('unhandledRejection', error => {
     console.error('Unhandled promise rejection:', error);
     if (error) if (error.length > 950) error = error.slice(0, 950) + '... view console for details';
     if (error.stack) if (error.stack.length > 950) error.stack = error.stack.slice(0, 950) + '... view console for details';
-    if(!error.stack) return
+    if (!error.stack) return
     const embed = new Discord.EmbedBuilder()
         .setTitle(`🚨・Unhandled promise rejection`)
         .addFields([

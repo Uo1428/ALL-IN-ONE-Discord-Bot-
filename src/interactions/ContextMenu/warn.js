@@ -27,6 +27,31 @@ module.exports = {
             }, interaction);
             return;
         }
+
+        if (interaction.targetId === interaction.user.id) {
+            client.errNormal({
+                error: `You can't warn yourself!`,
+                type: 'ephemeral'
+            }, interaction);
+            return;
+        }
+
+        if (interaction.targetUser.bot) {
+            client.errNormal({
+                error: `You can't warn a bot!`,
+                type: 'ephemeral'
+            }, interaction);
+            return;
+        } 
+
+        if (interaction.targetUser.id === client.user.id) {
+            client.errNormal({
+                error: `You can't warn me!`,
+                type: 'ephemeral'
+            }, interaction);
+            return;
+        }
+        
         // Create modal to give a reason
         const modal = new Discord.ModalBuilder()
             .setTitle('Warn')
@@ -53,9 +78,9 @@ module.exports = {
         }
 
         const member = interaction.guild.members.cache.get(interaction.targetId);
-        var caseNumber; 
+        var caseNumber;
         await Case.findOne({ Guild: interaction.guild.id }).then(async data => {
-            if(!data) {
+            if (!data) {
                 new Case({
                     Guild: interaction.guild.id,
                     Case: 1

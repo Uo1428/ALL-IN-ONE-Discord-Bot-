@@ -41,21 +41,13 @@ module.exports = async (client) => {
                             ]),
                     );
 
-                let row = new Discord.ActionRowBuilder()
-                    .addComponents(
-
-                        new Discord.ButtonBuilder()
-                            .setLabel("Vote Now")
-                            .setURL("https://top.gg/bot/798144456528363550/vote")
-                            .setStyle(Discord.ButtonStyle.Link),
-                    );
 
                 client.embed({
                     title: `📃・Bot Vote`,
                     desc: `Vote for Bot on top.gg`,
                     image: "https://cdn.discordapp.com/attachments/843487478881976381/874694192755007509/Bot_banner_vote.jpg",
                     url: "https://top.gg/bot/798144456528363550/vote",
-                    components: [row2, row],
+                    components: [row2],
                     type: 'edit'
                 }, interaction.message)
             }

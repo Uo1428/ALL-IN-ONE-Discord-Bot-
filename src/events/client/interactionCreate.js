@@ -18,7 +18,7 @@ module.exports = async (client, interaction) => {
             }
             else {
                 const cmd = client.commands.get(interaction.commandName);
-                if (!cmd){
+                if (!cmd) {
                     const cmdd = await Commands.findOne({
                         Guild: interaction.guild.id,
                         Name: interaction.commandName,
@@ -59,18 +59,16 @@ module.exports = async (client, interaction) => {
                     }
                 }
                 if (interaction.options._subcommand !== null && interaction.options.getSubcommand() == "help") {
-
-                  let cmd = interaction.client.commands.filter(x => x.data.name == interaction.commandName)
-                    const commands = cmd.map((x) => x.data.options.map((c) => '</' + interaction.commandName + ' ' + c.name + ':' + interaction.id +'> - ' + c.description).join("\n"));
+                    const cmdInfo = interaction.client.getSlashMentions(interaction.commandName)
 
                     return client.embed({
                         title: `❓・Help panel`,
-                        desc: `Get help with the commands in \`${interaction.commandName}\` \n\n${commands}`,
+                        desc: `Get help with the commands in \`${interaction.commandName}\` \n\n${cmdInfo.map((info) /* array of [cmd_mention, description] */=> `${info[0]} - \`${info[1]}\``).join("\n")}`,
                         type: 'reply'
                     }, interaction)
                 }
 
-                if(cmd) cmd.run(client, interaction, interaction.options._hoistedOptions).catch(err => {
+                if (cmd) cmd.run(client, interaction, interaction.options._hoistedOptions).catch(err => {
                     client.emit("errorCreate", err, interaction.commandName, interaction)
                 })
             }
@@ -84,7 +82,7 @@ module.exports = async (client, interaction) => {
             let captcha = new Captcha();
 
             try {
-                var image = new Discord.AttachmentBuilder(captcha.JPEGStream, {name:"captcha.jpeg"});
+                var image = new Discord.AttachmentBuilder(captcha.JPEGStream, { name: "captcha.jpeg" });
 
                 interaction.reply({ files: [image], fetchReply: true }).then(function (msg) {
                     const filter = s => s.author.id == interaction.user.id;
@@ -221,4 +219,3 @@ module.exports = async (client, interaction) => {
     }
 }
 
- 

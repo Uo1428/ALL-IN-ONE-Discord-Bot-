@@ -3,7 +3,9 @@ const { REST } = require('discord.js');
 const { Routes } = require('discord.js');
 const chalk = require('chalk');
 const fs = require('fs');
+const { ApplicationCommand } = require('discord.js');
 
+/**@param {Discord.Client} client */
 module.exports = (client) => {
     const interactionLogs = new Discord.WebhookClient({
         id: client.webhooks.interactionLogs.id,
@@ -11,13 +13,13 @@ module.exports = (client) => {
     });
 
     const commands = [];
-console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(`Loading commands`)), (chalk.white(`...`)))
+    console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(`Loading commands`)), (chalk.white(`...`)))
 
 
     fs.readdirSync('./src/interactions').forEach(dirs => {
         const commandFiles = fs.readdirSync(`./src/interactions/${dirs}`).filter(files => files.endsWith('.js'));
 
-    console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), chalk.red(`${commandFiles.length}`), (chalk.green(`commands of`)), chalk.red(`${dirs}`), (chalk.green(`loaded`)));
+        console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), chalk.red(`${commandFiles.length}`), (chalk.green(`commands of`)), chalk.red(`${dirs}`), (chalk.green(`loaded`)));
 
         for (const file of commandFiles) {
             const command = require(`${process.cwd()}/src/interactions/${dirs}/${file}`);
@@ -26,7 +28,7 @@ console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(
         };
     });
 
-    const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
+    const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 
     (async () => {
         try {
@@ -51,10 +53,10 @@ console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(
                 embeds: [embedFinal]
             });
 
+
         } catch (error) {
             console.log(error);
         }
     })();
 }
 
- 

@@ -81,7 +81,7 @@ module.exports = async (client, interaction, args) => {
         } 
         const checkStore = await store.findOne({ Guild: i.guild.id, Role: role });
 
-        if (parseInt(checkStore.Amount) > parseInt(data.Money)) return client.errNormal({
+        if (parseInt(checkStore.Amount) > parseInt(data?.Money)) return client.errNormal({
             error: `You don't have enough money to buy this!`,
             type: 'update',
             components: []

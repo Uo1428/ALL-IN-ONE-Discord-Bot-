@@ -1,11 +1,11 @@
 {
   "name": "discordbot",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "Discord Bot is a bot with which you can run your entire server! With no less than 400+ commands",
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node . --trace-warnings",
+    "start": "node .",
     "add-dev": "node src/dev.js"
   },
   "keywords": [
@@ -32,7 +32,7 @@
     "@iamtraction/google-translate": "^2.0.1",
     "@top-gg/sdk": "^3.1.3",
     "axios": "^1.2.2",
-    "canvacord": "^5.4.8",
+    "canvacord": "^6.0.2",
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
     "discord-giveaways": "^6.0.1",
@@ -51,6 +51,7 @@
     "fs": "^0.0.1-security",
     "generate-password": "^1.7.0",
     "giphy-api": "^2.0.2",
+    "groq-sdk": "^0.3.2",
     "he": "^1.2.0",
     "html-entities": "^2.3.3",
     "i": "^0.3.7",
@@ -68,6 +69,7 @@
     "node-fetch": "^2.6.6",
     "parse-ms": "^2.1.0",
     "popcat-wrapper": "^1.5.4",
+    "pro.db": "^3.0.8",
     "request": "^2.88.2",
     "sourcebin": "^5.0.0",
     "topgg-autoposter": "^2.0.1",

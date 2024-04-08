@@ -83,21 +83,7 @@ module.exports = {
                     title: `${client.user.username}・Profile`,
                     desc: '_____',
                     thumbnail: user.avatarURL({ dynamic: true }),
-                    fields: [{
-                        name: "👤┆User",
-                        value: user.username,
-                        inline: true
-                    },
-                    {
-                        name: "📘┆Discriminator",
-                        value: user.discriminator,
-                        inline: true
-                    },
-                    {
-                        name: "🆔┆ID",
-                        value: user.id,
-                        inline: true
-                    },
+                    fields: [
                     {
                         name: "👨‍👩‍👦┆Gender",
                         value: `${data.Gender || 'Not set'}`,
