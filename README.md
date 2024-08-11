@@ -3,7 +3,7 @@
   <p>A discord bot with alot of features.....<p>
 </div>
 
-![image](https://img.youtube.com/vi/yuyZPfslrsw/maxresdefault.jpg)
+![image](https://img.youtube.com/vi/yuyZPfslrsw/maxresdefault.jpg) 
 
 
 # [ALL IN ONΞ™](https://discord.uoaio.xyz)
