@@ -4,11 +4,6 @@
 </div>
 
 ![image](https://img.youtube.com/vi/yuyZPfslrsw/maxresdefault.jpg) 
-<div align="center">
-<a href="https://nowpayments.io/donation?api_key=PVK4VR1-H44MA0J-G5RC1Z8-BR5BMS4" target="_blank" rel="noreferrer noopener">
-   <img src="https://nowpayments.io/images/embeds/donation-button-black.svg" alt="Crypto donation button by NOWPayments">
-</a>
-</div>
 
 # [ALL IN ONΞ™](https://discord.uoaio.xyz)
 ## [YouTube](https://tinyurl.com/3jvb65tv)
