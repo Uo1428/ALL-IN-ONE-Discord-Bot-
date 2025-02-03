@@ -31,3 +31,9 @@
     <img align="mid" height="100%" width="100%" style="margin: 0 10px 0 0;" alt=" " src="https://discord.c99.nl/widget/theme-2/922120042651451423.png">
   </a>
 </div>
+
+
+<div align="center">
+  <p>Your One Click Can Help This Repo To Grow MorE: Leave a star ⭐<p>
+</div>
+
