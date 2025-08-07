@@ -3,6 +3,8 @@
   <p>A discord bot with alot of features.....<p>
 </div>
 
+Check New Bot: https://github.com/Uo1428/Mutli-Discord-Bot 
+
 ![image](https://img.youtube.com/vi/yuyZPfslrsw/maxresdefault.jpg) 
 
 # [ALL IN ONΞ™](https://discord.uoaio.xyz)
