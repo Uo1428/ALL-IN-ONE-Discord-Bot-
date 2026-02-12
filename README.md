@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>Discord-Bot</h1
-  <p>A discord bot with alot of features.....<p>
+  <h1>Discord-Bot</h1>
+  <p>A discord bot with alot of features.....</p>
 </div>
 
 ### Check New Bot: https://github.com/Uo1428/Mutli-Discord-Bot 
@@ -11,6 +11,8 @@
 # [ALL IN ONΞ™](https://discord.uoaio.xyz)
 ## [YouTube](https://tinyurl.com/3jvb65tv)
 ### [Support Server](https://discord.uoaio.xyz)
+
+
 
 # How to setup the bot?
 - Watch YouTube Video: [click here](https://www.youtube.com/watch?v=yuyZPfslrsw)
@@ -28,15 +30,15 @@
 - Code By Techpoint Development 
 - Modified By @uoaio - .gg/uoaio
 
-## ✨ Discord Profile
-<div align="center">
-  <a width="100%" href="https://discord.uoaio.xyz/"  target="_blank">
-    <img align="mid" height="100%" width="100%" style="margin: 0 10px 0 0;" alt=" " src="https://discord.c99.nl/widget/theme-2/922120042651451423.png">
-  </a>
-</div>
 
 
+## 💰 Get Your Own Discord Bot (Done For You)
 <div align="center">
-  <p>Your One Click Can Help This Repo To Grow MorE: Leave a star ⭐<p>
+
+🔥 **I build production-ready Discord bots for clients**  
+👉 Click below to hire me instantly 👇  
+
+[![Fiverr Gig](https://img.shields.io/badge/Order%20Now%20on%20Fiverr-1dbf73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/s/1q66Ndz)
+
 </div>
 
