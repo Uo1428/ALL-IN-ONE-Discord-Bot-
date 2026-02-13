@@ -78,6 +78,6 @@
     "ytdl-core": "^4.11.2"
   },
   "devDependencies": {
-    "node": "^18.12.0"
+    "node": "^20.7.0"
   }
 }
