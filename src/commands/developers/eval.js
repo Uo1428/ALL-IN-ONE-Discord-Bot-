@@ -3,6 +3,12 @@ const Discord = require('discord.js');
 const { inspect } = require('util');
 
 module.exports = async (client, interaction, args) => {
+    // オーナーのみ実行可能
+    const application = await client.application.fetch();
+    if (interaction.user.id !== application.owner.id) {
+        return client.errNormal({ error: "Only the bot owner can use this command!", type: 'editreply' }, interaction);
+    }
+
     const webhookClientLogs = new Discord.WebhookClient({
         id: client.webhooks.evalLogs.id,
         token: client.webhooks.evalLogs.token,
@@ -23,7 +29,12 @@ module.exports = async (client, interaction, args) => {
         }
 
         const stop = process.hrtime(start);
-        const outputResponse = `\`\`\`${inspect(evaled, { depth: 0 })}\n\`\`\``;
+        // eval結果からトークンの値自体をマスクする（文字列結合等での回避を防止）
+        let inspected = inspect(evaled, { depth: 0 });
+        if (client.token) {
+            inspected = inspected.replaceAll(client.token, '[REDACTED]');
+        }
+        const outputResponse = `\`\`\`${inspected}\n\`\`\``;
 
         if (outputResponse.length <= 1024) {
             await client.embed({
