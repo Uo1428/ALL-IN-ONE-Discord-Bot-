@@ -3,7 +3,7 @@
   <p>A discord bot with alot of features.....</p>
 </div>
 
-### Check New Bot: https://github.com/Uo1428/Mutli-Discord-Bot 
+### Leave a star 🌟 on repo (target 400) and i will build v2 with more advanced features 
 
 
 ![image](https://img.youtube.com/vi/yuyZPfslrsw/maxresdefault.jpg) 
